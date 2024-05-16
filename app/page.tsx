@@ -8,7 +8,7 @@ import Button from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-[100px]">
+    <main className="flex flex-col gap-[100px] pt-[75px]">
       <Hero />
       <section className="px-7">
         <h4 className="text-primary text-xs font-bold">WHAT WE DO</h4>
