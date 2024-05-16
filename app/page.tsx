@@ -13,7 +13,7 @@ export default function Home() {
       <section className="px-7">
         <h4 className="text-primary text-xs font-bold">WHAT WE DO</h4>
         <h3 className="font-bold text-lg mb-[25px]">
-          Here’s how we deliver high quality products
+          {`Here's how we deliver high quality products`}
         </h3>
         <div className="flex flex-col gap-[10px]">
           <HorizontalCard
@@ -37,7 +37,7 @@ export default function Home() {
       </section>
       <section className="text-center px-7">
         <h3 className="text-lg font-bold">Ready to start?</h3>
-        <p className={`${jetBrains.className} opacity-75 text-sm pb-[25px]`}>Contact us today! Let's create an outstanding website together.</p>
+        <p className={`${jetBrains.className} opacity-75 text-sm pb-[25px]`}>{`Contact us today! Let's create an outstanding website together.`}</p>
         <Button className="w-[200px]"/>
       </section>
     </main>
