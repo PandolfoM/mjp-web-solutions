@@ -22,6 +22,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import Button from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   firstname: z
@@ -45,6 +46,7 @@ const formSchema = z.object({
 
 function Contact() {
   const [isMounted, setIsMounted] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     setIsMounted(true);
@@ -62,14 +64,12 @@ function Contact() {
   function onSubmit(data: z.infer<typeof formSchema>) {
     console.log(data);
 
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // })
+    toast({
+      duration: 2000,
+      title: "Contact form submitted!",
+      description: "",
+    });
+    // form.reset();
   }
 
   if (!isMounted) {

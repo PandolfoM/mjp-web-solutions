@@ -8,7 +8,7 @@ type Props = {
 
 function Button({ text, className, type }: Props) {
   return (
-    <button type={type} className={`[border-image:linear-gradient(to_bottom_right,#F300AE,#8E39C5)_1] border-2 border-solid border-transparent bg-transparent p-1 font-bold ${className}`} >
+    <button type={type} className={`p-1 px-3 font-bold custom-border ${className}`} >
       {text ? text : "Get Started"}
     </button>
   );

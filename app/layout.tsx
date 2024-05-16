@@ -3,6 +3,7 @@ import "./globals.css";
 import Navigation from "@/components/navigation/navigation";
 import { inter } from "./fonts";
 import Footer from "@/components/navigation/footer";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "MJP Web Solutions",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <Navigation />
         <span className="pt-[75px]"/>
         {children}
+        <Toaster />
         <Footer/>
       </body>
     </html>
