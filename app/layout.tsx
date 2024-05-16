@@ -15,9 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className}`}>
+    <html lang="en" className="bg-background text-white h-full">
+      <body className={`${inter.className} flex flex-col h-full`}>
         <Navigation />
+        <span className="pt-[75px]"/>
         {children}
         <Footer/>
       </body>

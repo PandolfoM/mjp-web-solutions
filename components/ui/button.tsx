@@ -3,13 +3,13 @@ import React from "react";
 type Props = {
   text?: string;
   className?: string;
-  textSize?: string;
+  type?: "button" | "submit" | "reset" | undefined
 };
 
-function Button({ text, className, textSize }: Props) {
+function Button({ text, className, type }: Props) {
   return (
-    <button className={`rounded-sm p-0.5 bg-gradient-to-br to-90% from-primary to-secondary ${className}`}>
-      <div className={`bg-background rounded-sm px-3 py-1 w-full h-full ${textSize}`}>{text ? text : "Get Started"}</div>
+    <button type={type} className={`[border-image:linear-gradient(to_bottom_right,#F300AE,#8E39C5)_1] border-2 border-solid border-transparent bg-transparent p-1 font-bold ${className}`} >
+      {text ? text : "Get Started"}
     </button>
   );
 }
