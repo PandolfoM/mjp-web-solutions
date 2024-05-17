@@ -23,15 +23,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import Button from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { useSearchParams } from "next/navigation";
 
 const formSchema = z.object({
-  firstname: z
+  firstName: z
     .string({ required_error: "Required" })
     .min(2, {
       message: "Must be at least 2 characters",
     })
     .max(50),
-  lastname: z
+  lastName: z
     .string({ required_error: "Required" })
     .min(2, {
       message: "Must be at least 2 characters",
@@ -41,10 +42,11 @@ const formSchema = z.object({
     .string({ required_error: "Required" })
     .email({ message: "Not a valid email" }),
   subject: z.string({ required_error: "Required" }),
-  message: z.string({ required_error: "Required" }),
+  msg: z.string({ message: "Required" }),
 });
 
 function Contact() {
+  const params = useSearchParams();
   const [isMounted, setIsMounted] = useState(false);
   const { toast } = useToast();
 
@@ -55,21 +57,57 @@ function Contact() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       email: "",
+      subject: undefined,
+      msg: undefined,
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
+  useEffect(() => {
+    const plan = params.get("plan");
+    if (plan !== null) {
+      form.setValue("subject", `${plan} Plan`);
+    }
+  }, [params, form]);
+
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     console.log(data);
 
-    toast({
-      duration: 2000,
-      title: "Contact form submitted!",
-      description: "",
-    });
-    // form.reset();
+    if (data.msg === "") {
+      form.setError("msg", {message: "Required"});
+    }
+
+    await fetch("/api/send", {
+      method: "POST",
+      body: JSON.stringify( data ),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          toast({
+            duration: 2000,
+            title: "Error! Try again later.",
+            description: "",
+          });
+        } else {
+          toast({
+            duration: 2000,
+            title: "Contact form submitted!",
+            description: "",
+          });
+          form.reset({msg: "", subject: ""});
+        }
+      })
+      .catch((err) => {
+        toast({
+          duration: 2000,
+          title: "There has been an error!",
+          description: "",
+        });
+      });
+    return true;
   }
 
   if (!isMounted) {
@@ -93,7 +131,7 @@ function Contact() {
             className="flex flex-col gap-[5px]">
             <FormField
               control={form.control}
-              name="firstname"
+              name="firstName"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -105,7 +143,7 @@ function Contact() {
             />
             <FormField
               control={form.control}
-              name="lastname"
+              name="lastName"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -155,7 +193,7 @@ function Contact() {
             />
             <FormField
               control={form.control}
-              name="message"
+              name="msg"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>

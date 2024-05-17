@@ -33,7 +33,7 @@ export default function Home() {
         <h3 className="font-bold text-lg mb-[25px] pl-7">
           Plans to suit every need and budget
         </h3>
-        <Plans/>
+        <Plans orientation="horizontal"/>
       </section>
       <section className="text-center px-7">
         <h3 className="text-lg font-bold">Ready to start?</h3>
