@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { jetBrains } from "../fonts";
 import {
   Form,
@@ -41,18 +41,15 @@ const formSchema = z.object({
   email: z
     .string({ required_error: "Required" })
     .email({ message: "Not a valid email" }),
-  subject: z.string({ required_error: "Required" }),
-  msg: z.string({ message: "Required" }),
+  subject: z.string().min(1, { message: "Required" }),
+  msg: z.string().min(1, { message: "Required" }),
 });
 
-function Contact() {
-  const params = useSearchParams();
+function ContactForm() {
+  const searchParams = useSearchParams();
+  const [loading, setLoading] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState(false);
   const { toast } = useToast();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -60,55 +57,52 @@ function Contact() {
       firstName: "",
       lastName: "",
       email: "",
-      subject: undefined,
-      msg: undefined,
+      subject: "",
+      msg: "",
     },
   });
 
   useEffect(() => {
-    const plan = params.get("plan");
+    const plan = searchParams.get("plan");
     if (plan !== null) {
       form.setValue("subject", `${plan} Plan`);
     }
-  }, [params, form]);
+  }, [searchParams, form]);
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
 
-    if (data.msg === "") {
-      form.setError("msg", {message: "Required"});
-    }
-
-    await fetch("/api/send", {
-      method: "POST",
-      body: JSON.stringify( data ),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          toast({
-            duration: 2000,
-            title: "Error! Try again later.",
-            description: "",
-          });
-        } else {
-          toast({
-            duration: 2000,
-            title: "Contact form submitted!",
-            description: "",
-          });
-          form.reset({msg: "", subject: ""});
-        }
-      })
-      .catch((err) => {
+      if (result.error) {
         toast({
           duration: 2000,
-          title: "There has been an error!",
-          description: "",
+          title: "Error! Try again later.",
         });
+      } else {
+        toast({
+          duration: 2000,
+          title: "Contact form submitted!",
+        });
+        form.reset();
+      }
+    } catch (error) {
+      toast({
+        duration: 2000,
+        title: "There has been an error!",
       });
-    return true;
+    } finally {
+      setLoading(false);
+    }
   }
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   if (!isMounted) {
     return null;
@@ -175,7 +169,7 @@ function Contact() {
                     defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Subject" />
+                        <SelectValue placeholder="Subject"/>
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -211,12 +205,23 @@ function Contact() {
             <Button
               type="submit"
               text="Send"
+              disabled={loading}
               className="bg-[#141429] mt-[20px]"
             />
           </form>
         </Form>
       </section>
     </div>
+  );
+}
+
+function Contact() {
+  
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ContactForm />
+    </Suspense>
   );
 }
 
