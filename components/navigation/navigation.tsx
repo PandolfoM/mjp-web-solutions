@@ -22,7 +22,9 @@ function Navigation() {
           </h6>
         </Link>
         <div className="flex items-center justify-end gap-4">
-          <Button className="text-sm" />
+          <Link href="/contact">
+            <Button className="text-sm" />
+          </Link>
           <button onClick={() => setIsOpen(!isOpen)}>
             <IconLayoutGrid height={35} width={35} className="opacity-75" />
           </button>
@@ -46,11 +48,6 @@ function Navigation() {
               onClick={closeMenu}
               className={`${jetBrains.className} font-bold text-md`}>
               Plans
-            </Link>
-            <Link
-              href="/about"
-              className={`${jetBrains.className} font-bold text-md`}>
-              About
             </Link>
             <Link
               href="/contact"

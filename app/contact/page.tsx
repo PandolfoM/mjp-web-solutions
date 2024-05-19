@@ -24,6 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Button from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useSearchParams } from "next/navigation";
+import Section from "@/components/ui/section";
 
 const formSchema = z.object({
   firstName: z
@@ -114,110 +115,112 @@ function ContactForm() {
         Contact us today to get started on your project!
       </h1>
 
-      <section className="bg-gradient-radial to-80% from-card/[10%] to-card/[2%] rounded-[10px] p-[15px]">
-        <h3 className="font-bold text-md">Contact Information</h3>
-        <p className={`${jetBrains.className} opacity-75 text-sm mb-[25px]`}>
-          Fill out the form below and we will get back to you soon.
-        </p>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-[5px]">
-            <FormField
-              control={form.control}
-              name="firstName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input type="text" placeholder="First Name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input type="text" placeholder="Last Name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input type="email" placeholder="Email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="subject"
-              render={({ field }) => (
-                <FormItem>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}>
+      <Section>
+        <div className="bg-gradient-radial to-80% from-card/[10%] to-card/[2%] rounded-[10px] p-[15px]">
+          <h3 className="font-bold text-md">Contact Information</h3>
+          <p className={`${jetBrains.className} opacity-75 text-sm mb-[25px]`}>
+            Fill out the form below and we will get back to you soon.
+          </p>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-[5px]">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Subject"/>
-                      </SelectTrigger>
+                      <Input type="text" placeholder="First Name" {...field} />
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="Standard Plan">
-                        Standard Plan
-                      </SelectItem>
-                      <SelectItem value="Premium Plan">Premium Plan</SelectItem>
-                      <SelectItem value="Pro Plan">Pro Plan</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="msg"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Textarea
-                      rows={8}
-                      placeholder="Message"
-                      className="resize-none"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button
-              type="submit"
-              text="Send"
-              disabled={loading}
-              className="bg-[#141429] mt-[20px]"
-            />
-          </form>
-        </Form>
-      </section>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input type="text" placeholder="Last Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input type="email" placeholder="Email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="subject"
+                render={({ field }) => (
+                  <FormItem>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Subject" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Standard Plan">
+                          Standard Plan
+                        </SelectItem>
+                        <SelectItem value="Premium Plan">
+                          Premium Plan
+                        </SelectItem>
+                        <SelectItem value="Pro Plan">Pro Plan</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="msg"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Textarea
+                        rows={8}
+                        placeholder="Message"
+                        className="resize-none"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="submit"
+                text="Send"
+                disabled={loading}
+                className="bg-[#141429] mt-[20px]"
+              />
+            </form>
+          </Form>
+        </div>
+      </Section>
     </div>
   );
 }
 
 function Contact() {
-  
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ContactForm />
