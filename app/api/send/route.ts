@@ -3,10 +3,13 @@ import InquiryTemplate from "@/emails/inquiry-template";
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const { email, firstName, lastName, subject, msg } = await req.json();
+
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json({ error: "no resend api key" }, { status: 500 });
+  }
 
   try {
     const { data, error } = await resend.emails.send({
