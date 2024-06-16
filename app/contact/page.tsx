@@ -25,6 +25,7 @@ import Button from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useSearchParams } from "next/navigation";
 import Section from "@/components/ui/section";
+import { NextResponse } from "next/server";
 
 const formSchema = z.object({
   firstName: z
@@ -94,11 +95,12 @@ function ContactForm() {
         });
         form.reset();
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         duration: 2000,
         title: "There has been an error!",
       });
+      return NextResponse.json({ error: error.message }, { status: 500 });
     } finally {
       setLoading(false);
     }
