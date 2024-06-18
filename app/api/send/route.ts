@@ -5,9 +5,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   if (!process.env.RESEND_API_KEY) {
-    console.log("no resend api key");
-
-    return NextResponse.json({ error: "no resend api key" }, { status: 500 });
+    console.error("no resend api key");
+    return NextResponse.json(
+      { error: "There has been an error" },
+      { status: 500 }
+    );
   }
 
   const resend = new Resend(process.env.RESEND_API_KEY);
