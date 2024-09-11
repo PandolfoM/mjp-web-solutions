@@ -6,59 +6,78 @@ import Button from "../ui/button";
 import { IconLayoutGrid } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/app/assets/logo.png";
+import { cn } from "@/lib/utils";
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const closeMenu = () => setIsOpen(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <>
-      <nav className="flex items-center justify-between h-[50px] px-7 z-50 bg-background fixed w-full">
-        <Link href="/">
-          <h5 className="text-sm leading-3">MJP</h5>
-          <h6 className={`${jetBrains.className} text-xs opacity-75 leading-3`}>
-            Web Solutions
-          </h6>
-        </Link>
-        <div className="flex items-center justify-end gap-4">
-          <Link href="/contact">
-            <Button className="text-sm" />
-          </Link>
-          <button onClick={() => setIsOpen(!isOpen)}>
-            <IconLayoutGrid height={35} width={35} className="opacity-75" />
-          </button>
+    <nav
+      className={cn(
+        "fixed top-0 left-1/2 z-10 flex justify-center w-full p-4 overscroll-contain -translate-x-1/2",
+        isOpen && "min-h-screen max-h-screen pb-6"
+      )}>
+      <div
+        className={cn(
+          "w-full h-14 p-4 overflow-hidden bg-gradient-to-t from-[rgba(12,13,26,0.7)] to-[rgba(10,11,21,0.9)] backdrop-blur-sm border border-[hsla(0,0%,100%,.06)] rounded-2xl shadow-navbar transition-[height] duration-300 ease-in-out will-change-auto",
+          isOpen && "h-[300px]"
+        )}>
+        <div className="flex items-center justify-between w-full">
+          <div className="flex text-sm items-center gap-2">
+            <Image src={logo} alt="mjp web solutions logo" height={24} />
+            <p className={`${jetBrains.className}`}>MJP Web Solutions</p>
+          </div>
+          <div
+            className={cn(
+              "relative w-6 h-4 cursor-pointer transition-all duration-500 ease-in-out translate-y-0 rotate-0 will-change-auto",
+              isOpen && "rotate-180"
+            )}
+            onClick={toggleMenu}>
+            <div
+              className={cn(
+                "top-[10%] absolute left-1/2 w-full h-px bg-white transition-all duration-500 -translate-x-1/2 -translate-y-1/2 will-change-auto",
+                isOpen && "top-[50%] -rotate-45"
+              )}></div>
+            <div
+              className={cn(
+                "top-[50%] absolute left-1/2 w-full h-px bg-white transition-all duration-500 -translate-x-1/2 -translate-y-1/2 will-change-auto",
+                isOpen && "opacity-0"
+              )}></div>
+            <div
+              className={cn(
+                "top-[90%] absolute left-1/2 w-full h-px bg-white transition-all duration-500 -translate-x-1/2 -translate-y-1/2 will-change-auto",
+                isOpen && "top-[50%] rotate-45"
+              )}></div>
+          </div>
         </div>
-      </nav>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ y: -50 }}
-            animate={{ y: 30 }}
-            exit={{ y: -130 }}
-            className="bg-background border-b-2 border-primary flex flex-col gap-3 px-7 pt-7 pb-4 z-10 fixed w-full">
-            <Link
-              href="/"
-              onClick={closeMenu}
-              className={`${jetBrains.className} font-bold text-md`}>
-              Home
-            </Link>
-            <Link
-              href="/plans"
-              onClick={closeMenu}
-              className={`${jetBrains.className} font-bold text-md`}>
-              Plans
-            </Link>
-            <Link
-              href="/contact"
-              onClick={closeMenu}
-              className={`${jetBrains.className} font-bold text-md`}>
-              Contact
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+
+        {/* Content */}
+        <section className="flex flex-col gap-1 pt-12 pb-8 select-none">
+          <Link
+            href="/"
+            onClick={toggleMenu}
+            className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+            Home
+          </Link>
+          <Link
+            href="/plans"
+            onClick={toggleMenu}
+            className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+            Plans
+          </Link>
+          <Link
+            href="/contact"
+            onClick={toggleMenu}
+            className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+            Contact
+          </Link>
+        </section>
+      </div>
+    </nav>
   );
 }
 
