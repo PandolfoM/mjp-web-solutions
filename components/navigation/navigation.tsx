@@ -27,10 +27,12 @@ function Navigation() {
           isOpen && "h-[300px]"
         )}>
         <div className="flex items-center justify-between w-full">
-          <div className="flex text-sm items-center gap-2">
+          <Link
+            href="/"
+            className="flex text-sm items-center gap-2 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105">
             <Image src={logo} alt="mjp web solutions logo" height={24} />
             <p className={`${jetBrains.className}`}>MJP Web Solutions</p>
-          </div>
+          </Link>
           <div
             className={cn(
               "relative w-6 h-4 cursor-pointer transition-all duration-500 ease-in-out translate-y-0 rotate-0 will-change-auto",
