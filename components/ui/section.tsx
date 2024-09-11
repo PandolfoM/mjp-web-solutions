@@ -9,7 +9,7 @@ export default function Section({
   className?: string;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, amount: 0.7 });
 
   return (
     <section ref={ref} className={className}>

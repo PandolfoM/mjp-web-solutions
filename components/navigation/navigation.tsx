@@ -18,7 +18,7 @@ function Navigation() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-1/2 z-10 flex justify-center w-full p-4 overscroll-contain -translate-x-1/2",
+        "fixed top-0 left-1/2 z-10 flex justify-center w-full pt-4 px-4 overscroll-contain -translate-x-1/2",
         isOpen && "min-h-screen max-h-screen pb-6"
       )}>
       <div

@@ -22,6 +22,7 @@ const config = {
       sm: "12px",
       md: "16px",
       lg: "25px",
+      xl: "32px",
     },
     extend: {
       backgroundImage: {
