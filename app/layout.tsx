@@ -21,7 +21,7 @@ export default function RootLayout({
       className="bg-background text-white h-full selection:bg-primary/80">
       <body className={`${inter.className} flex flex-col h-full`}>
         <Navigation />
-        <span className="pt-[160px]" />
+        <span className="pt-[160px] lg:pt-[260px]" />
         {children}
         <Toaster />
         <Footer />

@@ -12,39 +12,49 @@ import Section from "@/components/ui/section";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-[100px]">
+    <main className="flex flex-col gap-[100px] lg:max-w-[1200px] lg:m-auto lg:gap-[300px]">
       <Section>
         <Hero />
       </Section>
       <Section className="px-7">
-        <h4 className="text-primary text-xs font-bold">WHAT WE DO</h4>
-        <h3 className="font-bold text-lg mb-[25px]">
-          {`Here's how we deliver high quality products`}
+        <h4 className="text-primary text-xs font-bold lg:text-sm">
+          WHAT WE DO
+        </h4>
+        <h3 className="font-bold text-lg mb-[25px] lg:text-xl">
+          Here's how we deliver high quality products
         </h3>
-        <div className="flex flex-col gap-[10px]">
+        <div className="flex flex-col gap-[10px] lg:flex-row lg:justify-center">
           <HorizontalCard
             svg={IconNext}
             title="Performace"
             subtitle="We use the latest technologies and best practices to ensure optimal performance for our websites."
+            className="lg:w-1/2"
           />
           <HorizontalCard
             svg={IconMessage}
             title="Communication"
             subtitle="Effective communication is crucial for maintaining design consistency."
+            className="lg:w-1/2"
           />
         </div>
       </Section>
       <Section>
-        <h4 className="text-primary text-xs font-bold pl-7">OUR PLANS</h4>
-        <h3 className="font-bold text-lg mb-[25px] pl-7">
+        <h4 className="text-primary text-xs font-bold pl-7 lg:text-sm">
+          OUR PLANS
+        </h4>
+        <h3 className="font-bold text-lg mb-[25px] pl-7 lg:text-xl">
           Plans to suit every need and budget
         </h3>
-        <Plans orientation="horizontal" />
+        <div className="lg:flex lg:justify-center">
+          <Plans orientation="horizontal" />
+        </div>
       </Section>
       <Section className="text-center px-7">
-        <h3 className="text-lg font-bold">Ready to start?</h3>
+        <h3 className="text-lg font-bold lg:text-xl">Ready to start?</h3>
         <p
-          className={`${jetBrains.className} opacity-75 text-sm pb-[25px]`}>{`Contact us today! Let's create an outstanding website together.`}</p>
+          className={`${jetBrains.className} opacity-75 text-sm pb-[25px] lg:text-md`}>
+          Contact us today! Let's create an outstanding website together.
+        </p>
         <Link href="/contact">
           <Button className="w-[200px]" />
         </Link>

@@ -6,8 +6,11 @@ import Link from "next/link";
 function Hero() {
   return (
     <section className="text-center px-7">
-      <h1 className="font-bold text-lg">Creating your Digital Presence.</h1>
-      <p className={`${jetBrains.className} text-sm opacity-75 pb-[25px]`}>
+      <h1 className="font-bold text-lg lg:text-xl">
+        Creating your Digital Presence.
+      </h1>
+      <p
+        className={`${jetBrains.className} text-sm opacity-75 pb-[25px] lg:text-md`}>
         Unlock the potential of your brand with a strong digital presence that
         speaks to your audience and drives engagement.
       </p>
