@@ -69,11 +69,13 @@ function Plans({ orientation, className }: Props) {
               relative
           `}>
           <>
-            <div className="pt-[15px] px-[15px] h-[10.5rem] relative flex flex-col justify-between">
+            <div className="pt-[15px] px-[15px] min-h-[10.5rem] relative flex flex-col justify-between lg:h-56">
               <span>
-                <h6 className="text-left font-bold text-md">{card.title}</h6>
+                <h6 className="text-left font-bold text-md lg:text-lg">
+                  {card.title}
+                </h6>
                 <p
-                  className={`${jetBrains.className} opacity-75 text-sm pb-[15px]`}>
+                  className={`${jetBrains.className} opacity-75 text-sm pb-[15px] lg:text-md`}>
                   {card.description}
                 </p>
               </span>
@@ -84,7 +86,8 @@ function Plans({ orientation, className }: Props) {
               {card.options.map((o, i) => (
                 <div key={i} className="flex gap-[10px] items-center">
                   <IconCircleCheck className="w-[15px] h-[15px]" />
-                  <p className={`${jetBrains.className} text-sm opacity-75`}>
+                  <p
+                    className={`${jetBrains.className} text-sm opacity-75 lg:text-md`}>
                     {o}
                   </p>
                 </div>

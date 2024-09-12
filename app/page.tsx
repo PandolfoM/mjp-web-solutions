@@ -45,7 +45,7 @@ export default function Home() {
         <h3 className="font-bold text-lg mb-[25px] pl-7 lg:text-xl">
           Plans to suit every need and budget
         </h3>
-        <div className="lg:flex lg:justify-center">
+        <div className="flex justify-center">
           <Plans orientation="horizontal" />
         </div>
       </Section>
