@@ -69,12 +69,14 @@ function Plans({ orientation, className }: Props) {
               relative
           `}>
           <>
-            <div className="pt-[15px] px-[15px]">
-              <h6 className="text-left font-bold text-md">{card.title}</h6>
-              <p
-                className={`${jetBrains.className} opacity-75 text-sm pb-[15px]`}>
-                {card.description}
-              </p>
+            <div className="pt-[15px] px-[15px] h-[10.5rem] relative flex flex-col justify-between">
+              <span>
+                <h6 className="text-left font-bold text-md">{card.title}</h6>
+                <p
+                  className={`${jetBrains.className} opacity-75 text-sm pb-[15px]`}>
+                  {card.description}
+                </p>
+              </span>
               <h6 className="text-left font-bold text-md">${card.price}+</h6>
             </div>
             <hr className="w-full h-px border-none bg-white/5" />
