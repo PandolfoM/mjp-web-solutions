@@ -118,16 +118,21 @@ function ContactForm() {
   return (
     <>
       {loading && <Spinner />}
-      <div className="flex flex-col gap-[100px] px-7 flex-1">
-        <h1 className="text-lg font-bold text-center">
-          Contact us today to get started on your project!
-        </h1>
+      <div className="flex flex-col gap-[75px] px-7 flex-1 lg:m-auto lg:flex-row lg:items-center lg:justify-center lg:gap-[12rem]">
+        <div className="text-center lg:w-96 lg:text-left">
+          <h1 className="text-lg font-bold lg:text-xl">Let's talk!</h1>
+          <p className={`${jetBrains.className} text-sm opacity-75 lg:text-md`}>
+            Contact us today to get started on your project!
+          </p>
+        </div>
 
         <Section>
-          <div className="bg-gradient-radial to-80% from-card/[10%] to-card/[2%] rounded-[10px] p-[15px]">
-            <h3 className="font-bold text-md">Contact Information</h3>
+          <div className="bg-gradient-radial to-80% from-card/[10%] to-card/[2%] rounded-[10px] p-[15px] lg:w-[30rem]">
+            <h3 className="font-bold text-md lg:text-lg">
+              Contact Information
+            </h3>
             <p
-              className={`${jetBrains.className} opacity-75 text-sm mb-[25px]`}>
+              className={`${jetBrains.className} opacity-75 text-sm mb-[25px] lg:text-md`}>
               Fill out the form below and we will get back to you soon.
             </p>
             <Form {...form}>
