@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   orientation: "horizontal" | "vertical";
+  className?: string;
 };
 
 const cards = [
@@ -44,14 +45,15 @@ const cards = [
   },
 ];
 
-function Plans({ orientation }: Props) {
+function Plans({ orientation, className }: Props) {
   return (
     <div
       className={cn(
         "flex items-start flex-nowrap gap-[15px] overflow-x-auto relative",
         orientation === "horizontal"
           ? "flex-row overflow-x-auto"
-          : "flex-col items-center overflow-visible"
+          : "flex-col items-center overflow-visible",
+        className
       )}>
       {cards.map((card, i) => (
         <VerticalCard

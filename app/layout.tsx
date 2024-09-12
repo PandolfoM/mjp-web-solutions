@@ -16,7 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-background text-white h-full">
+    <html
+      lang="en"
+      className="bg-background text-white h-full selection:bg-primary/80">
       <body className={`${inter.className} flex flex-col h-full`}>
         <Navigation />
         <span className="pt-[160px]" />
