@@ -1,15 +1,18 @@
 import { useInView } from "framer-motion";
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 export default function Section({
   children,
   className,
+  amount,
 }: {
   children: ReactNode;
   className?: string;
+  amount?: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.7 });
+
+  const isInView = useInView(ref, { once: true, amount: amount || 0.7 });
 
   return (
     <section ref={ref} className={className}>

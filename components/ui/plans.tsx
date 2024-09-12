@@ -4,6 +4,7 @@ import { jetBrains } from "@/app/fonts";
 import { IconCircleCheck } from "@tabler/icons-react";
 import Button from "./button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type Props = {
   orientation: "horizontal" | "vertical";
@@ -15,30 +16,43 @@ const cards = [
     description:
       "A perfect choice for individuals or businesses needing a straightforward and effective web presence.",
     price: "3,000",
-    options: ["Up to 3 pages", "Notion board"],
+    options: ["Up to 3 pages", "Notion board", "Test URL"],
   },
   {
     title: "Premium",
     description:
       "A comprehensive solution for growing businesses seeking advanced features and enhanced performance.",
     price: "5,500",
-    options: ["Unlimited pages", "Notion board", "Monthly Maintenance"],
+    options: [
+      "Unlimited pages",
+      "Notion board",
+      "Monthly Maintenance",
+      "Test URL",
+    ],
   },
   {
     title: "Pro",
     description:
       "An all-inclusive package designed for professionals and enterprises requiring top-tier functionality and custom solutions.",
     price: "9,500",
-    options: ["Unlimited pages", "Notion board", "Monthly Maintenance"],
+    options: [
+      "Unlimited pages",
+      "Notion board",
+      "Monthly Maintenance",
+      "Test URL",
+    ],
   },
 ];
 
 function Plans({ orientation }: Props) {
   return (
     <div
-      className={`flex items-start flex-nowrap gap-[15px] overflow-x-auto relative overflow-hidden ${
-        orientation === "horizontal" ? "flex-row" : "flex-col items-center"
-      }`}>
+      className={cn(
+        "flex items-start flex-nowrap gap-[15px] overflow-x-auto relative",
+        orientation === "horizontal"
+          ? "flex-row overflow-x-auto"
+          : "flex-col items-center overflow-visible"
+      )}>
       {cards.map((card, i) => (
         <VerticalCard
           key={i}
@@ -59,7 +73,7 @@ function Plans({ orientation }: Props) {
                 className={`${jetBrains.className} opacity-75 text-sm pb-[15px]`}>
                 {card.description}
               </p>
-              <h6 className="text-left font-bold text-md">${card.price}/m</h6>
+              <h6 className="text-left font-bold text-md">${card.price}+</h6>
             </div>
             <hr className="w-full h-px border-none bg-white/5" />
             <div className="pb-[15px] px-[15px] flex flex-col gap-[5px]">
@@ -73,12 +87,13 @@ function Plans({ orientation }: Props) {
               ))}
             </div>
             <div className="px-[15px] w-full absolute bottom-0 pb-[15px]">
-              <Link href={{
-                pathname: "/contact",
-                query: {
-                  plan: card.title
-                }
-              }}>
+              <Link
+                href={{
+                  pathname: "/contact",
+                  query: {
+                    plan: card.title,
+                  },
+                }}>
                 <Button text="Select Plan" className="w-full" />
               </Link>
             </div>
