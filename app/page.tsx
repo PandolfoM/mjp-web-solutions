@@ -9,6 +9,7 @@ import { jetBrains } from "./fonts";
 import Button from "@/components/ui/button";
 import Link from "next/link";
 import Section from "@/components/ui/section";
+import Marquee from "@/components/ui/marquee";
 
 export default function Home() {
   return (
@@ -36,6 +37,17 @@ export default function Home() {
             subtitle="Effective communication is crucial for maintaining design consistency."
             className="lg:w-1/2"
           />
+        </div>
+      </Section>
+      <Section>
+        <h4 className="text-primary text-xs font-bold pl-7 lg:text-sm">
+          Clients
+        </h4>
+        <h3 className="font-bold text-lg mb-[25px] pl-7 lg:text-xl">
+          Trusted by leading companies
+        </h3>
+        <div className="relative flex overflow-x-hidden bg-background">
+          <Marquee />
         </div>
       </Section>
       <Section>

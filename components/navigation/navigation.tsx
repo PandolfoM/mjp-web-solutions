@@ -44,19 +44,16 @@ function Navigation() {
           <div className="hidden lg:flex lg:absolute left-1/2 -translate-x-1/2">
             <Link
               href="/"
-              onClick={toggleMenu}
               className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
               Home
             </Link>
             <Link
               href="/plans"
-              onClick={toggleMenu}
               className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
               Plans
             </Link>
             <Link
               href="/contact"
-              onClick={toggleMenu}
               className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
               Contact
             </Link>
