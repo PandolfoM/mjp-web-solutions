@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     url: "https://mjpwebsolutions.com",
     siteName: "MJP Web Solutions",
     locale: "en_US",
+    images: [
+      {
+        url: "https://mjpwebsolutions.com/logo.png",
+        width: 62,
+        height: 46,
+        alt: "MJP Web Solutions",
+      },
+    ],
   },
 };
 
