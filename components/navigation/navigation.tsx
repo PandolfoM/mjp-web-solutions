@@ -7,7 +7,7 @@ import { IconLayoutGrid } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/app/assets/logo.png";
+import logo from "@/app/assets/logo.svg";
 import { cn } from "@/lib/utils";
 
 function Navigation() {
