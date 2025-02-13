@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://mjpwebsolutions.com/logo.png",
+        url: "https://mjpwebsolutions.com/og.png",
         width: 62,
         height: 46,
         alt: "MJP Web Solutions",
@@ -47,6 +47,27 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icon.ico" type="image/ico" sizes="48x48" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+
+        {/* Open Graph */}
+        <meta
+          property="og:image"
+          content="https://mjpwebsolutions.com/og.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter */}
+        <meta
+          name="twitter:image"
+          content="https://mjpwebsolutions.com/og.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Web Tinting */}
+        <meta name="theme-color" content="#0E0F1E" />
+        <meta name="msapplication-navbutton-color" content="#0E0F1E" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#0E0F1E" />
       </Head>
       <body className={`${inter.className} flex flex-col h-full`}>
         <Navigation />
