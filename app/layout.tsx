@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     description:
       "Unlock the potential of your brand with a strong digital presence that speaks to your audience and drives engagement.",
     type: "website",
-    url: "https://mjpwebsolutions.com",
+    url: "https://www.mjpwebsolutions.com",
     siteName: "MJP Web Solutions",
     locale: "en_US",
     images: [
       {
-        url: "https://mjpwebsolutions.com/og.png",
+        url: "https://www.mjpwebsolutions.com/og.png",
         width: 62,
         height: 46,
         alt: "MJP Web Solutions",
@@ -51,7 +51,7 @@ export default function RootLayout({
         {/* Open Graph */}
         <meta
           property="og:image"
-          content="https://mjpwebsolutions.com/og.png"
+          content="https://www.mjpwebsolutions.com/og.png"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -59,7 +59,7 @@ export default function RootLayout({
         {/* Twitter */}
         <meta
           name="twitter:image"
-          content="https://mjpwebsolutions.com/og.png"
+          content="https://www.mjpwebsolutions.com/og.png"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
