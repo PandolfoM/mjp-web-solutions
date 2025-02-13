@@ -4,6 +4,7 @@ import Navigation from "@/components/navigation/navigation";
 import { inter } from "./fonts";
 import Footer from "@/components/navigation/footer";
 import { Toaster } from "@/components/ui/toaster";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "MJP Web Solutions",
@@ -29,6 +30,16 @@ export default function RootLayout({
     <html
       lang="en"
       className="bg-background text-white h-full selection:bg-primary/80">
+      <Head>
+        <link
+          rel="apple-touch-icon"
+          href="/apple-icon.png"
+          type="image/png"
+          sizes="180x180"
+        />
+        <link rel="icon" href="/icon.ico" type="image/ico" sizes="48x48" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </Head>
       <body className={`${inter.className} flex flex-col h-full`}>
         <Navigation />
         <span className="pt-[160px] lg:pt-[260px]" />
