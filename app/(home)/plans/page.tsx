@@ -3,7 +3,7 @@
 import Plans from "@/components/ui/plans";
 import Section from "@/components/ui/section";
 import React from "react";
-import { jetBrains } from "../fonts";
+import { jetBrains } from "../../fonts";
 import Link from "next/link";
 
 function PlansPage() {

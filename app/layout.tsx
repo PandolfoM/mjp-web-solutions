@@ -70,11 +70,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="#0E0F1E" />
       </Head>
       <body className={`${inter.className} flex flex-col h-full`}>
-        <Navigation />
-        <span className="pt-[160px] lg:pt-[260px]" />
+        {/* <Navigation /> */}
+        {/* <span className="pt-[160px] lg:pt-[260px]" /> */}
         {children}
         <Toaster />
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

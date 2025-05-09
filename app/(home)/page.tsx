@@ -5,7 +5,7 @@ import Hero from "@/components/ui/hero";
 import IconNext from "@/app/assets/player-track-next.svg";
 import IconMessage from "@/app/assets/message.svg";
 import Plans from "@/components/ui/plans";
-import { jetBrains } from "./fonts";
+import { jetBrains } from "../fonts";
 import Button from "@/components/ui/button";
 import Link from "next/link";
 import Section from "@/components/ui/section";
