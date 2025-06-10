@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import maneeley from "@/app/assets/maneeley-logo.svg";
 import heenakapadia from "@/app/assets/heenakapadia.svg";
+import dunkin from "@/app/assets/dunkin.svg";
 
 const sitesArr = [
   {
@@ -15,11 +16,16 @@ const sitesArr = [
     url: "https://www.heenakapadialaw.com/",
     img: heenakapadia,
   },
+  {
+    name: "Dunkin'",
+    url: "https://www.gadonut.com/",
+    img: dunkin,
+  },
 ];
 
 const marqueeVariants = {
   animate: {
-    x: [0, -501],
+    x: [0, "-100%"],
     transition: {
       x: {
         repeat: Infinity,
@@ -48,7 +54,7 @@ const Marquee = () => {
               key={index}
               src={site.img}
               alt={site.name}
-              className="h-16 w-auto transition-all duration-300 opacity-50 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal cursor-pointer"
+              className="h-16 w-44 transition-all duration-300 opacity-50 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal cursor-pointer"
               onClick={() => routeTo(site.url)}
             />
           ))}
@@ -59,7 +65,7 @@ const Marquee = () => {
               key={index}
               src={site.img}
               alt={site.name}
-              className="h-20 w-auto transition-all duration-300 opacity-50 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal cursor-pointer"
+              className="h-20 w-72 transition-all duration-300 opacity-50 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal cursor-pointer"
               onClick={() => routeTo(site.url)}
             />
           ))}
