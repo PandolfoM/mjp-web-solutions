@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "MJP Web Solutions <mjp@mattpandolfo.com>",
+      from: "MJP Web Solutions <mjp@mjphub.com>",
       to: email,
       subject: `Website Inquiry (${subject})`,
       react: InquiryTemplate({
