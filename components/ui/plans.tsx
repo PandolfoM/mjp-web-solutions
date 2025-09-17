@@ -15,32 +15,40 @@ const cards = [
   {
     title: "Standard",
     description:
-      "A perfect choice for individuals or businesses needing a straightforward and effective web presence.",
-    price: "3,000",
-    options: ["Up to 3 pages", "Notion board", "Test URL"],
+      "Ideal for individuals or small businesses seeking a simple, effective, and professional web presence.",
+    price: "2,000+",
+    options: [
+      "Up to 3 pages",
+      "Yearly Maintenance",
+      "SEO Setup",
+      "Contact Form",
+      "Mobile responsive design",
+    ],
   },
   {
     title: "Premium",
     description:
-      "A comprehensive solution for growing businesses seeking advanced features and enhanced performance.",
-    price: "5,500",
+      "Designed for growing businesses that need advanced features, enhanced performance, and greater flexibility.",
+    price: "5,000+",
     options: [
-      "Unlimited pages",
-      "Notion board",
-      "Monthly Maintenance",
-      "Test URL",
+      "Up to 6 pages",
+      "Site Analytics",
+      "Yearly or Biannually Maintenance",
+      "Priority Support",
+      "Social Media Integration",
     ],
   },
   {
     title: "Pro",
     description:
-      "An all-inclusive package designed for professionals and enterprises requiring top-tier functionality and custom solutions.",
-    price: "9,500",
+      "Our most comprehensive package, tailored for professionals and enterprises needing custom solutions and top-tier functionality.",
+    price: "9,500+",
     options: [
       "Unlimited pages",
-      "Notion board",
-      "Monthly Maintenance",
-      "Test URL",
+      "Site Analytics",
+      "Custom Scheduled Maintenance",
+      "Custom API Integrations",
+      "E-commerce Functionality",
     ],
   },
 ];
@@ -85,7 +93,7 @@ function Plans({ orientation, className }: Props) {
             <div className="pb-[15px] px-[15px] flex flex-col gap-[5px]">
               {card.options.map((o, i) => (
                 <div key={i} className="flex gap-[10px] items-center">
-                  <IconCircleCheck className="w-[15px] h-[15px]" />
+                  <IconCircleCheck className="w-[15px] h-[15px] min-w-[15px]" />
                   <p
                     className={`${jetBrains.className} text-sm opacity-75 lg:text-md`}>
                     {o}

@@ -37,7 +37,7 @@ const sitesArr = [
   },
   {
     name: "Dunkin'",
-    url: "https://www.gadonut.com/",
+    url: "https://gadonut.com/",
     img: dunkin,
   },
 ];
