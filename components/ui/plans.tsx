@@ -16,7 +16,7 @@ const cards = [
     title: "Standard",
     description:
       "Ideal for individuals or small businesses seeking a simple, effective, and professional web presence.",
-    price: "2,000+",
+    price: "2,000",
     options: [
       "Up to 3 pages",
       "Yearly Maintenance",
@@ -29,7 +29,7 @@ const cards = [
     title: "Premium",
     description:
       "Designed for growing businesses that need advanced features, enhanced performance, and greater flexibility.",
-    price: "5,000+",
+    price: "5,000",
     options: [
       "Up to 6 pages",
       "Site Analytics",
@@ -42,7 +42,7 @@ const cards = [
     title: "Pro",
     description:
       "Our most comprehensive package, tailored for professionals and enterprises needing custom solutions and top-tier functionality.",
-    price: "9,500+",
+    price: "9,500",
     options: [
       "Unlimited pages",
       "Site Analytics",
