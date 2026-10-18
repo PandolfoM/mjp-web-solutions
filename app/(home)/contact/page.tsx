@@ -153,13 +153,15 @@ Message: ${data.msg}`,
               Contact Information
             </h3>
             <p
-              className={`${jetBrains.className} opacity-75 text-sm mb-[25px] lg:text-md`}>
+              className={`${jetBrains.className} opacity-75 text-sm mb-[25px] lg:text-md`}
+            >
               Fill out the form below and we will get back to you soon.
             </p>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col gap-[5px]">
+                className="flex flex-col gap-[5px]"
+              >
                 <FormField
                   control={form.control}
                   name="firstName"
@@ -207,7 +209,8 @@ Message: ${data.msg}`,
                     <FormItem>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}>
+                        defaultValue={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Subject" />

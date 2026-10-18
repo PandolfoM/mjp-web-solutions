@@ -17,14 +17,18 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       <button
         ref={ref}
         type={type}
-        className={cn("p-1 px-3 font-bold custom-border", className)}
+        className={cn(
+          "p-1 px-3 font-bold custom-border cursor-pointer",
+          className,
+        )}
         disabled={disabled}
         onClick={onClick}
-        {...props}>
+        {...props}
+      >
         {children ? children : text ? text : "Get Started"}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
