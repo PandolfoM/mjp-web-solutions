@@ -23,7 +23,7 @@ function Navigation() {
       )}>
       <div
         className={cn(
-          "w-full h-14 p-4 overflow-hidden bg-gradient-to-t from-[rgba(12,13,26,0.7)] to-[rgba(10,11,21,0.9)] backdrop-blur-sm border border-[hsla(0,0%,100%,.06)] rounded-2xl shadow-navbar transition-[height] duration-300 ease-in-out will-change-auto lg:h-[76px] lg:items-center lg:flex",
+          "w-full h-14 p-4 overflow-hidden bg-linear-to-t from-[rgba(12,13,26,0.7)] to-[rgba(10,11,21,0.9)] backdrop-blur-xs border border-[hsla(0,0%,100%,.06)] rounded-2xl shadow-navbar transition-[height] duration-300 ease-in-out will-change-auto lg:h-[76px] lg:items-center lg:flex",
           isOpen && "h-[300px]"
         )}>
         <div className="flex items-center justify-between w-full relative">

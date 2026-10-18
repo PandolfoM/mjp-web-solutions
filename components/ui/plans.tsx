@@ -77,7 +77,7 @@ function Plans({ orientation, className }: Props) {
               relative
           `}>
           <>
-            <div className="pt-[15px] px-[15px] min-h-[10.5rem] relative flex flex-col justify-between lg:h-56">
+            <div className="pt-[15px] px-[15px] min-h-42 relative flex flex-col justify-between lg:h-56">
               <span>
                 <h6 className="text-left font-bold text-md lg:text-lg">
                   {card.title}

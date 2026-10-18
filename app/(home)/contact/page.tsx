@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { jetBrains } from "../../fonts";
 import {
   Form,
@@ -25,7 +25,8 @@ import Button from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useSearchParams } from "next/navigation";
 import Section from "@/components/ui/section";
-import { NextResponse } from "next/server";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import { sendEmail } from "@/lib/send-email";
 import Spinner from "@/components/ui/spinner";
 
 const formSchema = z.object({
@@ -52,6 +53,8 @@ function ContactForm() {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string>("");
+  const turnstile = useRef<TurnstileInstance>(null);
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -73,18 +76,34 @@ function ContactForm() {
   }, [searchParams, form]);
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
+    if (!captchaToken) {
+      toast({
+        duration: 2000,
+        title: "Please wait for the security check to finish.",
+      });
+      return;
+    }
     setLoading(true);
     try {
-      const res = await fetch("/api/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      // Sent through MJP Hub, which checks the Turnstile token.
+      const res = await sendEmail({
+        from: "MJP Web Solutions",
+        to: "matt@pandolfo.com",
+        subject: `Website Inquiry (${data.subject})`,
+        emailProps: {
+          Name: `${data.firstName} ${data.lastName}`,
+          Email: data.email,
+          Subject: data.subject,
+          Message: data.msg,
         },
-        body: JSON.stringify(data),
+        text: `Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Subject: ${data.subject}
+Message: ${data.msg}`,
+        captchaToken,
       });
-      const result = await res.json();
 
-      if (result.error) {
+      if (!res.ok) {
         toast({
           duration: 2000,
           title: "Error! Try again later.",
@@ -96,13 +115,15 @@ function ContactForm() {
         });
         form.reset();
       }
-    } catch (error: any) {
+    } catch {
       toast({
         duration: 2000,
         title: "There has been an error!",
       });
-      return NextResponse.json({ error: error.message }, { status: 500 });
     } finally {
+      // Tokens work once; get a fresh one for the next message.
+      setCaptchaToken("");
+      turnstile.current?.reset();
       setLoading(false);
     }
   }
@@ -118,7 +139,7 @@ function ContactForm() {
   return (
     <>
       {loading && <Spinner />}
-      <div className="flex flex-col gap-[75px] px-7 flex-1 lg:m-auto lg:flex-row lg:items-center lg:justify-center lg:gap-[12rem]">
+      <div className="flex flex-col gap-[75px] px-7 flex-1 lg:m-auto lg:flex-row lg:items-center lg:justify-center lg:gap-48">
         <div className="text-center lg:w-96 lg:text-left">
           <h1 className="text-lg font-bold lg:text-xl">Let's talk!</h1>
           <p className={`${jetBrains.className} text-sm opacity-75 lg:text-md`}>
@@ -127,7 +148,7 @@ function ContactForm() {
         </div>
 
         <Section>
-          <div className="bg-gradient-radial to-80% from-card/[10%] to-card/[2%] rounded-[10px] p-[15px] lg:w-[30rem]">
+          <div className="bg-gradient-radial to-80% from-card/10 to-card/2 rounded-[10px] p-[15px] lg:w-120">
             <h3 className="font-bold text-md lg:text-lg">
               Contact Information
             </h3>
@@ -223,6 +244,15 @@ function ContactForm() {
                       <FormMessage />
                     </FormItem>
                   )}
+                />
+                <Turnstile
+                  ref={turnstile}
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  onSuccess={setCaptchaToken}
+                  onExpire={() => setCaptchaToken("")}
+                  onError={() => setCaptchaToken("")}
+                  options={{ theme: "dark", size: "flexible" }}
+                  className="mt-[20px]"
                 />
                 <Button
                   type="submit"

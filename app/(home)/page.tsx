@@ -93,7 +93,7 @@ export default function Home() {
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex touch-pan-x touch-pinch-zoom ml-0">
                 {sitesArr.map((site, index) => (
-                  <div className="flex-grow-0 flex-shrink-0 mx-8" key={index}>
+                  <div className="grow-0 shrink-0 mx-8" key={index}>
                     <Image
                       src={site.img}
                       alt={site.name}
