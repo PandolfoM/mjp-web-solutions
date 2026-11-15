@@ -1,7 +1,4 @@
-"use client";
-
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { jetBrains } from "../../fonts";
+import { useRef, useState } from "react";
 import {
   Form,
   FormControl,
@@ -23,7 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import Button from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "react-router";
 import Section from "@/components/ui/section";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { sendEmail } from "@/lib/send-email";
@@ -49,31 +46,26 @@ const formSchema = z.object({
   msg: z.string().min(1, { message: "Required" }),
 });
 
-function ContactForm() {
-  const searchParams = useSearchParams();
+export default function Contact() {
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState<boolean>(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string>("");
   const turnstile = useRef<TurnstileInstance>(null);
   const { toast } = useToast();
 
+  // "Select Plan" links here with ?plan=Standard etc. The subject <Select> is
+  // uncontrolled, so the plan has to be in place on the first render.
+  const plan = searchParams.get("plan");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
-      subject: "",
+      subject: plan !== null ? `${plan} Plan` : "",
       msg: "",
     },
   });
-
-  useEffect(() => {
-    const plan = searchParams.get("plan");
-    if (plan !== null) {
-      form.setValue("subject", `${plan} Plan`);
-    }
-  }, [searchParams, form]);
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     if (!captchaToken) {
@@ -128,21 +120,13 @@ Message: ${data.msg}`,
     }
   }
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
-
   return (
     <>
       {loading && <Spinner />}
       <div className="flex flex-col gap-[75px] px-7 flex-1 lg:m-auto lg:flex-row lg:items-center lg:justify-center lg:gap-48">
         <div className="text-center lg:w-96 lg:text-left">
           <h1 className="text-lg font-bold lg:text-xl">Let's talk!</h1>
-          <p className={`${jetBrains.className} text-sm opacity-75 lg:text-md`}>
+          <p className={`font-jetbrains text-sm opacity-75 lg:text-md`}>
             Contact us today to get started on your project!
           </p>
         </div>
@@ -153,7 +137,7 @@ Message: ${data.msg}`,
               Contact Information
             </h3>
             <p
-              className={`${jetBrains.className} opacity-75 text-sm mb-[25px] lg:text-md`}
+              className={`font-jetbrains opacity-75 text-sm mb-[25px] lg:text-md`}
             >
               Fill out the form below and we will get back to you soon.
             </p>
@@ -250,7 +234,7 @@ Message: ${data.msg}`,
                 />
                 <Turnstile
                   ref={turnstile}
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
                   onSuccess={setCaptchaToken}
                   onExpire={() => setCaptchaToken("")}
                   onError={() => setCaptchaToken("")}
@@ -271,13 +255,3 @@ Message: ${data.msg}`,
     </>
   );
 }
-
-function Contact() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ContactForm />
-    </Suspense>
-  );
-}
-
-export default Contact;

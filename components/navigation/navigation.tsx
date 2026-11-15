@@ -1,12 +1,5 @@
-"use client";
-
-import { jetBrains } from "@/app/fonts";
 import React, { useState } from "react";
-import Button from "../ui/button";
-import { IconLayoutGrid } from "@tabler/icons-react";
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "react-router";
 import logo from "@/app/assets/logo.svg";
 import { cn } from "@/lib/utils";
 
@@ -28,14 +21,14 @@ function Navigation() {
         )}>
         <div className="flex items-center justify-between w-full relative">
           <Link
-            href="/"
+            to="/"
             className="flex text-sm items-center gap-2 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105">
-            <Image
+            <img
               src={logo}
               alt="mjp web solutions logo"
               className="h-6 w-6 lg:w-8 lg:h-8 aspect-square"
             />
-            <p className={`${jetBrains.className} lg:text-md`}>
+            <p className={`font-jetbrains lg:text-md`}>
               MJP Web Solutions
             </p>
           </Link>
@@ -43,18 +36,18 @@ function Navigation() {
           {/* Desktop Links */}
           <div className="hidden lg:flex lg:absolute left-1/2 -translate-x-1/2">
             <Link
-              href="/"
-              className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+              to="/"
+              className={`font-jetbrains font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
               Home
             </Link>
             <Link
-              href="/plans"
-              className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+              to="/plans"
+              className={`font-jetbrains font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
               Plans
             </Link>
             <Link
-              href="/contact"
-              className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+              to="/contact"
+              className={`font-jetbrains font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
               Contact
             </Link>
           </div>
@@ -86,21 +79,21 @@ function Navigation() {
         {/* Content */}
         <section className="flex flex-col gap-1 pt-12 pb-8 select-none lg:hidden">
           <Link
-            href="/"
+            to="/"
             onClick={toggleMenu}
-            className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+            className={`font-jetbrains font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
             Home
           </Link>
           <Link
-            href="/plans"
+            to="/plans"
             onClick={toggleMenu}
-            className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+            className={`font-jetbrains font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
             Plans
           </Link>
           <Link
-            href="/contact"
+            to="/contact"
             onClick={toggleMenu}
-            className={`${jetBrains.className} font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
+            className={`font-jetbrains font-bold text-md transition-all duration-200 ease-in-out py-3 px-2 text-white/50 hover:text-white`}>
             Contact
           </Link>
         </section>
