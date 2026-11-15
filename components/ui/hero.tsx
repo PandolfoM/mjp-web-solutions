@@ -1,7 +1,6 @@
-import { jetBrains } from "@/app/fonts";
 import React from "react";
 import Button from "./button";
-import Link from "next/link";
+import { Link } from "react-router";
 
 function Hero() {
   return (
@@ -10,11 +9,11 @@ function Hero() {
         Creating your Digital Presence.
       </h1>
       <p
-        className={`${jetBrains.className} text-sm opacity-75 pb-[25px] lg:text-md`}>
+        className={`font-jetbrains text-sm opacity-75 pb-[25px] lg:text-md`}>
         Unlock the potential of your brand with a strong digital presence that
         speaks to your audience and drives engagement.
       </p>
-      <Link href="/contact">
+      <Link to="/contact">
         <Button className="w-[230px] h-[35px]" />
       </Link>
     </section>

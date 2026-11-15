@@ -1,20 +1,30 @@
-import nextVitals from "eslint-config-next/core-web-vitals";
+import js from "@eslint/js";
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import tseslint from "typescript-eslint";
 
-const eslintConfig = [
+export default tseslint.config(
+  // Flat config only ignores node_modules by default; skip build output.
+  { ignores: ["dist/**"] },
   {
-    // Flat config only ignores node_modules by default; skip build output.
-    ignores: [".next/**", "out/**", "next-env.d.ts"],
-  },
-  ...nextVitals,
-  {
+    files: ["**/*.{ts,tsx}"],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    languageOptions: { globals: globals.browser },
+    plugins: {
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
     rules: {
-      // Carried over from .eslintrc.json (which misspelt the rule name).
-      "react/no-unescaped-entities": "off",
-      // New in eslint-config-next 16 (React Compiler rules). Existing code
-      // sets state in effects; warn until those are reworked.
+      ...reactHooks.configs.recommended.rules,
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      "@typescript-eslint/no-explicit-any": "off",
+      // React Compiler rule. The shadcn carousel sets state in an effect;
+      // warn until that is reworked.
       "react-hooks/set-state-in-effect": "warn",
     },
   },
-];
-
-export default eslintConfig;
+);

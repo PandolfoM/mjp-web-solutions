@@ -1,9 +1,8 @@
 import React from "react";
 import VerticalCard from "../cards/verticalcard";
-import { jetBrains } from "@/app/fonts";
 import { IconCircleCheck } from "@tabler/icons-react";
 import Button from "./button";
-import Link from "next/link";
+import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -83,7 +82,7 @@ function Plans({ orientation, className }: Props) {
                   {card.title}
                 </h6>
                 <p
-                  className={`${jetBrains.className} opacity-75 text-sm pb-[15px] lg:text-md`}>
+                  className={`font-jetbrains opacity-75 text-sm pb-[15px] lg:text-md`}>
                   {card.description}
                 </p>
               </span>
@@ -95,7 +94,7 @@ function Plans({ orientation, className }: Props) {
                 <div key={i} className="flex gap-[10px] items-center">
                   <IconCircleCheck className="w-[15px] h-[15px] min-w-[15px]" />
                   <p
-                    className={`${jetBrains.className} text-sm opacity-75 lg:text-md`}>
+                    className={`font-jetbrains text-sm opacity-75 lg:text-md`}>
                     {o}
                   </p>
                 </div>
@@ -103,11 +102,9 @@ function Plans({ orientation, className }: Props) {
             </div>
             <div className="px-[15px] w-full absolute bottom-0 pb-[15px]">
               <Link
-                href={{
+                to={{
                   pathname: "/contact",
-                  query: {
-                    plan: card.title,
-                  },
+                  search: `?plan=${encodeURIComponent(card.title)}`,
                 }}>
                 <Button text="Select Plan" className="w-full" />
               </Link>

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useInView } from "framer-motion";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useRef } from "react";
 
 export default function Section({
   children,

@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import maneeley from "@/app/assets/maneeley-logo.svg";
 import heenakapadia from "@/app/assets/heenakapadia.svg";
 import dunkin from "@/app/assets/dunkin.svg";
@@ -50,7 +49,7 @@ const Marquee = () => {
           variants={marqueeVariants}
           animate="animate">
           {sitesArr.concat(sitesArr).map((site, index) => (
-            <Image
+            <img
               key={index}
               src={site.img}
               alt={site.name}
@@ -61,7 +60,7 @@ const Marquee = () => {
         </motion.div>
         <div className="hidden gap-10 justify-center w-full lg:flex">
           {sitesArr.map((site, index) => (
-            <Image
+            <img
               key={index}
               src={site.img}
               alt={site.name}

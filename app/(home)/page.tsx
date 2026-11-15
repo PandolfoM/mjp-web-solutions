@@ -1,27 +1,15 @@
-"use client";
-
-import { useRef } from "react";
 import HorizontalCard from "@/components/cards/horizontalcard";
 import Hero from "@/components/ui/hero";
 import IconNext from "@/app/assets/player-track-next.svg";
 import IconMessage from "@/app/assets/message.svg";
 import Plans from "@/components/ui/plans";
-import { jetBrains } from "../fonts";
 import Button from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "react-router";
 import Section from "@/components/ui/section";
-import Marquee from "@/components/ui/marquee";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import AutoScroll from "embla-carousel-auto-scroll";
 import maneeley from "@/app/assets/maneeley-logo.svg";
 import heenakapadia from "@/app/assets/heenakapadia.svg";
 import dunkin from "@/app/assets/dunkin.svg";
-import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 
 const sitesArr = [
@@ -47,7 +35,7 @@ export default function Home() {
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [
     AutoScroll({ speed: 0.8 }),
   ]);
 
@@ -94,7 +82,7 @@ export default function Home() {
               <div className="flex touch-pan-x touch-pinch-zoom ml-0">
                 {sitesArr.map((site, index) => (
                   <div className="grow-0 shrink-0 mx-8" key={index}>
-                    <Image
+                    <img
                       src={site.img}
                       alt={site.name}
                       className="h-20 w-52 transition-all duration-300 opacity-50 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal cursor-pointer"
@@ -113,7 +101,7 @@ export default function Home() {
             <CarouselContent>
               {sitesArr.map((site, index) => (
                 <CarouselItem key={index} className="w-fit">
-                  <Image
+                  <img
                     src={site.img}
                     alt={site.name}
                     className="h-20 w-52 transition-all duration-300 opacity-50 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal cursor-pointer"
@@ -139,10 +127,10 @@ export default function Home() {
       <Section className="text-center px-7">
         <h3 className="text-lg font-bold lg:text-xl">Ready to start?</h3>
         <p
-          className={`${jetBrains.className} opacity-75 text-sm pb-[25px] lg:text-md`}>
+          className={`font-jetbrains opacity-75 text-sm pb-[25px] lg:text-md`}>
           Contact us today! Let's create an outstanding website together.
         </p>
-        <Link href="/contact">
+        <Link to="/contact">
           <Button className="w-[200px]" />
         </Link>
       </Section>

@@ -29,6 +29,10 @@
 
   --shadow-navbar: inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.15);
 
+  /* Self-hosted from @fontsource-variable, imported in app/main.tsx. */
+  --font-inter: "Inter Variable", sans-serif;
+  --font-jetbrains: "JetBrains Mono Variable", monospace;
+
   @keyframes accordion-down {
     from {
       height: 0;
